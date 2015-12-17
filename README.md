@@ -6,7 +6,7 @@ Code-along with Stanford's [Algorithms: Design and Analysis, Part 1](https://www
 ### Week 1
 - Introduction
 - Asymptotic Analysis
-- Divde and Conquer Algorithms
+- Divide and Conquer Algorithms
 
 ### Week 2
 - The Master Method
