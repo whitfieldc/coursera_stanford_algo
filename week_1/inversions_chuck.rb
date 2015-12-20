@@ -4,7 +4,14 @@
 # input_array4 = [1]
 
 input_array = [1, 3, 5, 2, 4, 6]
+input_array2 = [2, 4, 1, 3, 5]
+input_array3 = [6, 9, 1, 14, 8, 12, 3, 2]
+input_array4 = [ 3, 2, 1 ]
 
+def count_and_return_invs(array)
+  input_and_invs_count = count_inversions(array)
+  input_and_invs_count[1]
+end
 
 
 def count_inversions(array)
@@ -48,7 +55,7 @@ def merge_and_count_split_inv(first_array_and_count, second_array_and_count)
   [stitched, split_invs]
 end
 
-p count_inversions(input_array)
-# p count_inversions(input_array2)
-# p count_inversions(input_array3)
-# p count_inversions(input_array4)
+p count_and_return_invs(input_array)
+p count_and_return_invs(input_array2)
+p count_and_return_invs(input_array3)
+p count_and_return_invs(input_array4)
