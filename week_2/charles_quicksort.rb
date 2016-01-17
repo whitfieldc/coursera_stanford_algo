@@ -4,45 +4,51 @@ def swap(array, index1, index2)
   array[index1] = value2
   array[index2] = value1
 end
-input_array = [3, 1, 4, 5, 7, 2, 8, 6]
 
-def quicksort(master_array, left=0, right=-1)
-  # p master_array[left..right]
-  sub_array = master_array
+input_array = [3, 1, 4, 5, 7, 2, 8, 6]
+input_array2 = [9, 8, 7, 6, 5, 4, 3, 2, 1]
+input_array3 = [9, 8, 7, 6, 5, 4, 3, 2, 1, 10, 12, 11, 41]
+input_array4 = [9, 9, 8, 3]
+
+def quicksort(master_array, left=0, right=nil)
+  if !right
+    right = master_array.length-1
+  end
   sub_array_length = master_array[left..right].length
-  middle_index = (sub_array_length/2)-1
+  middle_index = left + (sub_array_length/2)
 
   return if sub_array_length < 2
 
-  pivot = sub_array[middle_index]
+  pivot = master_array[middle_index]
 
   swap(master_array, left, middle_index)
-  p master_array
-  p pivot
 
-  # p sub_array
 
   partition_point = (left + 1)
   current = partition_point
-  p current
 
   master_array[partition_point..right].each do |number|
     if number < pivot
-      p "swapping #{number} and #{master_array[partition_point]}"
+
       swap(master_array, partition_point, current)
       partition_point += 1
     end
-      p master_array
+
     current += 1
   end
-  p master_array
 
   swap(master_array, left, partition_point-1)
+
+  quicksort(master_array, left, (partition_point-2))
+  quicksort(master_array, partition_point, right)
 
   master_array
 
 end
 
-p quicksort(input_array) == [2, 1, 4, 3, 5, 7, 8, 6]
+p quicksort(input_array) == input_array.sort!
+p quicksort(input_array2) == input_array2.sort!
+p quicksort(input_array3) == input_array3.sort!
+p quicksort(input_array4) == input_array4.sort!
 
 
