@@ -29,7 +29,6 @@ def quicksort(master_array, left=0, right=nil)
 
   master_array[partition_point..right].each do |number|
     if number < pivot
-
       swap(master_array, partition_point, current)
       partition_point += 1
     end
