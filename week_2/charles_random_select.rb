@@ -6,14 +6,9 @@ def swap(array, index1, index2)
 end
 
 def random_select(array, target_order_statistic)
-  # p "target_order_statistic: #{target_order_statistic}"
   return array[0] if array.length == 1
-  # p "array at top:"
-  # p array
   pivot_index = rand(array.length-1)
-  # p "pivot index: #{pivot_index}"
   pivot = array[pivot_index]
-  # p "pivot is #{pivot}"
 
   swap(array, 0, pivot_index)
 
@@ -29,12 +24,6 @@ def random_select(array, target_order_statistic)
   end
 
   swap(array, 0, partition_point - 1)
-  # p "array after swap:"
-  # p array
-  # p "left-most index > than pivot: #{partition_point}"
-  # if array == [nil]
-  #   return "brokeN"
-  # end
 
   pivot_order_statistic = partition_point - 1
 
