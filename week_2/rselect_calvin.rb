@@ -1,46 +1,54 @@
 def rselect(arr, length, order_stat )
-  puts "order_stat #{order_stat}"
-  puts "length is #{length}"
+  # puts "order_stat #{order_stat}"
+  # puts "length is #{length}"
   if(length == 1)
-    puts "final array"
+    # puts "final array"
     p arr
-    puts "array returned"
+    # puts "array returned"
     return arr[0]
   else
-    rand_index = rand(0..(length-1))
+    rand_index = rand(length)
     pivot_index = rand_index
-    puts "array is"
-    p arr
-    puts "pivot index is"
-    p pivot_index
+    # puts "array is"
+    # p arr
+    # puts "pivot index is"
+    # p pivot_index
 
-    puts "pivot_value is"
-    p pivot_value = arr[pivot_index]
+    # puts "pivot_value is"
+    pivot_value = arr[pivot_index]
 
 
     #partition A around p
     # j = new index of p
-    puts "j is"
-    p j = partition_new_pivot_index(arr, pivot_index)
+
+    j = partition_new_pivot_index(arr, pivot_index)
+    # puts "j is #{j}"
+    # p j
     # if j== i return p
     if (j == order_stat )
       # puts "i j comparisson"
-      p "j is #{j} == #{order_stat}"
+      # p "j is #{j} == #{order_stat}"
       return pivot_value
     # if j > i return rselect(firstpart A, j-1, i)
     elsif (j > order_stat)
       # puts "i j comparisson"
       # p "j is #{j} > #{order_stat}"
-      new_array_left = arr[0..(pivot_index-1)]
+      # puts "i j comparisson"
+      # p "j is #{j} > #{order_stat}"
+      new_array_left = arr[0..(j-1)]
+      # puts "new left array is:"
       p new_array_left
-      return rselect(arr[0..(pivot_index-1)], j-1, order_stat)
+      return rselect(arr[0..(j-1)], j, order_stat)
     # if j < i return rselect(secondpart A, n-j, i-j)
     else # j < i
       # puts "i j comparisson"
+      # puts "i j comparisson"
       # p "j is #{j} < #{order_stat}"
-      new_array_right = arr[(pivot_index+1)..(length)]
+      # p "j is #{j} < #{order_stat}"
+      # puts "new right array is:"
+      new_array_right = arr[(pivot_index+1)..(length-1)]
       p new_array_right
-      return rselect(arr[(pivot_index+1)..(length)], length-j, order_stat - j)
+      return rselect(arr[(j+1)..(length)], length-j-1, order_stat - j-1)
     end
 
 
@@ -53,7 +61,6 @@ def partition_new_pivot_index(arr, index)
   # move the index to the first element
   if(index != 0)
     swap(arr, 0, index)
-    # p arr
   end
 
   pivot_start = 0
@@ -65,26 +72,14 @@ def partition_new_pivot_index(arr, index)
 
   for j in pivot_start+1..(length-1) do
     if arr[j] < pivot_value
-      # p j
       swap(arr, i , j)
-      # p arr
       i = i + 1
-    # puts "j is #{j}"
-
-      # puts "i is incremented #{i}"
     end
-    # puts "i is not incremented #{i}"
-    # puts "j is #{j}"
 
   end
 
-  # puts " i and j are"
-  # p i
-  # p j
-
   swap(arr, pivot_start, i-1)
   # puts "final swap"
-  # p arr
   return i-1
 
 end
@@ -100,7 +95,7 @@ end
 
 
 
-arr = [1, 5, 3, 4, 2, 6]
+arr = [1, 5, 3, 4, 2, 6, 7, 8, 9]
 # rselect(arr, 5, 2)
 
 # puts "swap swapped index 0 and 1"
@@ -109,13 +104,13 @@ arr = [1, 5, 3, 4, 2, 6]
 # p arr
 
 # puts "should be 2"
-# p rselect(arr, 6, 1)
+p rselect(arr, 9, 4)
 
 # partition(arr, 1)
 
 # puts "partition around 8"
 # p arr
-p partition(arr, 1)
+# p partition_new_pivot_index(arr, 3)
 
-
+p arr
 
