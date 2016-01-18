@@ -1,52 +1,31 @@
 def rselect(arr, length, order_stat )
-  # puts "order_stat #{order_stat}"
-  # puts "length is #{length}"
+
   if(length == 1)
-    # puts "final array"
-    p arr
-    # puts "array returned"
+    puts "The answer:"
     return arr[0]
   else
     rand_index = rand(length)
     pivot_index = rand_index
-    # puts "array is"
-    # p arr
-    # puts "pivot index is"
-    # p pivot_index
 
-    # puts "pivot_value is"
     pivot_value = arr[pivot_index]
 
 
-    #partition A around p
-    # j = new index of p
 
     j = partition_new_pivot_index(arr, pivot_index)
     # puts "j is #{j}"
     # p j
     # if j== i return p
     if (j == order_stat )
-      # puts "i j comparisson"
-      # p "j is #{j} == #{order_stat}"
+      puts "The answer:"
       return pivot_value
     # if j > i return rselect(firstpart A, j-1, i)
     elsif (j > order_stat)
-      # puts "i j comparisson"
-      # p "j is #{j} > #{order_stat}"
-      # puts "i j comparisson"
-      # p "j is #{j} > #{order_stat}"
       new_array_left = arr[0..(j-1)]
-      # puts "new left array is:"
       p new_array_left
       return rselect(arr[0..(j-1)], j, order_stat)
     # if j < i return rselect(secondpart A, n-j, i-j)
     else # j < i
-      # puts "i j comparisson"
-      # puts "i j comparisson"
-      # p "j is #{j} < #{order_stat}"
-      # p "j is #{j} < #{order_stat}"
-      # puts "new right array is:"
-      new_array_right = arr[(pivot_index+1)..(length-1)]
+      new_array_right = arr[(j+1)..(length)]
       p new_array_right
       return rselect(arr[(j+1)..(length)], length-j-1, order_stat - j-1)
     end
@@ -68,7 +47,6 @@ def partition_new_pivot_index(arr, index)
   length = arr.size()
 
   i = pivot_start +1
-  # p i
 
   for j in pivot_start+1..(length-1) do
     if arr[j] < pivot_value
@@ -95,22 +73,6 @@ end
 
 
 
-arr = [1, 5, 3, 4, 2, 6, 7, 8, 9]
-# rselect(arr, 5, 2)
-
-# puts "swap swapped index 0 and 1"
-# p swap(arr, 0, 1)
-# puts "array "
-# p arr
-
-# puts "should be 2"
-p rselect(arr, 9, 4)
-
-# partition(arr, 1)
-
-# puts "partition around 8"
-# p arr
-# p partition_new_pivot_index(arr, 3)
-
-p arr
+arr = [1, 5, 3, 4, 2, 100, 7, 8, 9]
+p rselect(arr, 9, 3)
 
