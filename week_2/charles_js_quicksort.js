@@ -7,17 +7,25 @@ var swap = function(array, index1, index2){
 	return array;
 }
 
-var inputArray = [3, 1, 4, 5, 7, 2, 8, 6]
+var inputArray = [3, 1, 4, 5, 7, 2, 8, 6];
+var inputArray2 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
+var inputArray3 = [9, 8, 7, 6, 5, 4, 3, 2, 1, 10, 12, 11];
+var inputArray4 = [9, 9, 8, 3];
 
 var quicksort = function(masterArray, left, right){
-	right = right || (masterArray.length -1);
+	if(right === undefined){
+		right = (masterArray.length -1);
+	}
+
 	left = left || 0;
 
 	subArrayLength = (right - left +1);
+	// console.log("subarray length: " +subArrayLength)
+	// console.log(masterArray)
 
 	middleIndex = left + (Math.floor(subArrayLength/2));
+	// console.log("middle index: " +middleIndex)
 
-	// subArrayLength < 2 ? return : null;
 	if (subArrayLength < 2){
 		return;
 	}
@@ -25,6 +33,7 @@ var quicksort = function(masterArray, left, right){
 	pivot = masterArray[middleIndex];
 
 	swap(masterArray, left, middleIndex);
+	// console.log(masterArray)
 
 	partitionPoint = (left+1);
 	current = partitionPoint;
@@ -40,10 +49,17 @@ var quicksort = function(masterArray, left, right){
 
 	swap(masterArray, left, (partitionPoint-1));
 
+	// console.log(left)
+	// console.log((partitionPoint-2))
+	// console.log((masterArray))
+
 	quicksort(masterArray, left, (partitionPoint-2));
 	quicksort(masterArray, partitionPoint, right);
 
 	return masterArray;
 }
 
-console.log(quicksort(inputArray))
+console.log(quicksort(inputArray) === inputArray.sort())
+console.log(quicksort(inputArray2) === inputArray2.sort())
+console.log(quicksort(inputArray3) === inputArray3.sort())
+console.log(quicksort(inputArray4) === inputArray4.sort())
